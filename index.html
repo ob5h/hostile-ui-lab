@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="A polished account setup experience with comically hostile controls." />
+  <title>Northstar ID - Account setup</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Northstar home">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span>Northstar</span>
+    </a>
+    <nav class="topnav app-nav" aria-label="Primary navigation">
+      <button class="nav-tab active" type="button" data-view-target="signup">Account setup</button>
+      <button class="nav-tab" type="button" data-view-target="settings">Settings</button>
+      <button class="nav-tab" type="button" data-view-target="challenge">Compliance lab</button>
+      <button class="icon-button" id="themeButton" type="button" aria-label="Toggle theme">◐</button>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <aside class="rail" aria-label="Setup progress">
+      <div class="rail-kicker">Account center</div>
+      <h1>Northstar ID</h1>
+      <p>Manage identity, preferences, and account compliance from one consistent interface.</p>
+
+      <div class="area-nav" aria-label="Account areas">
+        <button class="area-link active" type="button" data-view-target="signup"><span>01</span><div><strong>Account setup</strong><small>Identity and security</small></div></button>
+        <button class="area-link" type="button" data-view-target="settings"><span>02</span><div><strong>Settings</strong><small>Device preferences</small></div></button>
+        <button class="area-link" type="button" data-view-target="challenge"><span>03</span><div><strong>Compliance lab</strong><small>String validation</small></div></button>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon" aria-hidden="true">◆</div>
+        <div><strong>Predictable controls</strong><p>Every setting is deterministic, auditable, and technically possible to operate.</p></div>
+      </div>
+    </aside>
+
+    <section class="panel app-view active" data-view="signup" aria-labelledby="panelTitle">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">Step 2 of 4</span>
+          <h2 id="panelTitle">Create your identity</h2>
+          <p>Choose how you’ll appear across your workspace.</p>
+        </div>
+        <div class="progress-wrap" aria-label="Setup progress">
+          <span id="progressLabel">50%</span>
+          <div class="progress-track"><i id="progressFill"></i></div>
+        </div>
+      </div>
+
+      <form id="hostileForm" novalidate>
+        <section class="form-section">
+          <div class="section-title"><span>01</span><div><h3>Profile</h3><p>Basic account details</p></div></div>
+
+          <div class="field-grid two">
+            <div class="field">
+              <span>Display name</span>
+              <input id="displayName" type="hidden" value="A" />
+              <div class="name-machine">
+                <div class="name-machine-display" id="nameMachineDisplay">A</div>
+                <div class="name-machine-status"><span id="nameCursorLabel">Position 1 of 1</span><strong id="nameCurrentChar">A</strong></div>
+                <div class="name-machine-grid">
+                  <button id="namePrevChar" type="button">Previous character</button>
+                  <button id="nameNextChar" type="button">Next character</button>
+                  <button id="namePrevPos" type="button">Previous position</button>
+                  <button id="nameNextPos" type="button">Next position</button>
+                  <button id="nameInsert" type="button">Insert position</button>
+                  <button id="nameDelete" type="button">Delete position</button>
+                </div>
+              </div>
+              <small>Select each character by moving forward or backward through the approved character list.</small>
+            </div>
+
+            <label class="field">
+              <span>Pronunciation confidence</span>
+              <div class="range-row">
+                <input id="confidence" type="range" min="0" max="100" value="73" />
+                <output id="confidenceOut">73%</output>
+              </div>
+              <small>We use this instead of asking how to pronounce your name.</small>
+            </label>
+          </div>
+
+          <div class="field username-field">
+            <div class="label-row"><span>Username</span><span class="status-pill">Required</span></div>
+            <div class="username-card">
+              <div class="username-preview">
+                <span>@</span><strong id="usernameValue">aaaaaa</strong>
+                <button type="button" id="copyUsername" class="ghost-copy">Copy</button>
+              </div>
+              <input id="usernameSlider" class="mega-slider" type="range" min="0" max="2176782335" value="0" step="1" aria-label="Choose username" />
+              <div class="slider-meta">
+                <span>aaaaaa</span>
+                <span id="usernamePosition">1 of 2,176,782,336 combinations</span>
+                <span>999999</span>
+              </div>
+            </div>
+            <small>For your convenience, every six-character lowercase alphanumeric username is available on one slider.</small>
+          </div>
+
+          <div class="field">
+            <div class="label-row"><span>Date of birth</span><span class="status-pill">Required</span></div>
+            <div class="birthday-machine">
+              <div class="birthday-guess">
+                <span>Is your birthday</span>
+                <strong id="birthdayGuess">June 30, 1989</strong>
+                <span>?</span>
+              </div>
+              <div class="birthday-actions">
+                <button id="birthdayEarlier" type="button">Earlier</button>
+                <button id="birthdayCorrect" type="button" class="accent-action">Exactly</button>
+                <button id="birthdayLater" type="button">Later</button>
+              </div>
+              <small id="birthdayStatus">We’ll locate it with an efficient binary search instead of a date picker.</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-title"><span>02</span><div><h3>Security</h3><p>Protect your new account</p></div></div>
+
+          <div class="field">
+            <div class="label-row"><span>Password</span><button id="passwordPolicy" type="button" class="text-action">View generation policy</button></div>
+            <div class="password-builder">
+              <div class="password-output"><code id="passwordValue">amber-amber-amber-00!</code><button id="copyPassword" type="button">Copy</button></div>
+              <label><span>First word</span><input id="passwordWordA" type="range" min="0" max="63" value="0" /></label>
+              <label><span>Second word</span><input id="passwordWordB" type="range" min="0" max="63" value="0" /></label>
+              <label><span>Third word</span><input id="passwordWordC" type="range" min="0" max="63" value="0" /></label>
+              <label><span>Two-digit number</span><input id="passwordNumber" type="range" min="0" max="99" value="0" /></label>
+              <label><span>Required symbol</span><input id="passwordSymbol" type="range" min="0" max="11" value="0" /></label>
+            </div>
+            <small>Your password is generated exclusively through sliders so it cannot be mistyped.</small>
+          </div>
+
+          <div class="field">
+            <span>Recovery number</span>
+            <div class="phone-machine">
+              <div class="phone-display" id="phoneDisplay">+1 (000) 000-0000</div>
+              <input id="phoneSlider" type="range" min="0" max="9999999999" value="0" step="1" aria-label="Recovery phone number" />
+              <div class="phone-actions">
+                <button id="randomPhone" type="button">I’m feeling adventurous</button>
+                <span id="phoneOdds">10,000,000,000 possibilities</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section compact-section">
+          <div class="section-title"><span>03</span><div><h3>Consent</h3><p>Nearly finished</p></div></div>
+
+          <div class="terms-machine">
+            <div class="terms-copy">
+              <strong>Terms acknowledgement</strong>
+              <p>To confirm that you have reviewed all 84 pages, move the reading-position control to page 84.</p>
+            </div>
+            <input id="termsSlider" type="range" min="1" max="84" value="1" />
+            <div class="terms-meta"><span>Page 1</span><strong id="termsPage">Page 1 of 84</strong><span>Page 84</span></div>
+          </div>
+
+          <div class="consent-row" id="consentRow">
+            <button id="consentBox" class="fake-checkbox" type="button" role="checkbox" aria-checked="false" aria-label="Accept terms" disabled><span></span></button>
+            <p>I have read and accept the <a href="#terms">Terms of Service</a>, <a href="#privacy">Privacy Policy</a>, and the Supplemental Button Interaction Agreement.</p>
+          </div>
+
+          <div id="humanCheck" class="human-check">
+            <div>
+              <span class="human-kicker">Human verification</span>
+              <strong id="humanQuestion">Set the verification total to exactly 100 using all three sliders.</strong>
+            </div>
+            <div class="verification-sliders">
+              <label>A <input id="verifyA" type="range" min="0" max="100" value="33" /><output id="verifyAOut">33</output></label>
+              <label>B <input id="verifyB" type="range" min="0" max="100" value="33" /><output id="verifyBOut">33</output></label>
+              <label>C <input id="verifyC" type="range" min="0" max="100" value="33" /><output id="verifyCOut">33</output></label>
+            </div>
+            <button id="verifyHuman" type="button">Verify total</button>
+            <small id="humanStatus">Current total: 99</small>
+          </div>
+        </section>
+
+        <div class="form-footer">
+          <div class="save-status"><i></i><span id="saveStatus">All changes saved 3 seconds from now</span></div>
+          <div class="footer-actions" id="footerActions">
+            <button id="backButton" class="button secondary" type="button">Back</button>
+            <button id="continueButton" class="button primary" type="submit">Continue</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel app-view" data-view="settings" aria-labelledby="settingsTitle" hidden>
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">Device preferences</span>
+          <h2 id="settingsTitle">Settings</h2>
+          <p>Adjust common preferences using fully enumerated controls.</p>
+        </div>
+        <div class="settings-badge">Local only</div>
+      </div>
+
+      <section class="form-section">
+        <div class="section-title"><span>01</span><div><h3>Audio</h3><p>Output level</p></div></div>
+        <div class="field">
+          <div class="label-row"><span>Volume</span><strong id="volumeValue" class="inline-value">Volume 50</strong></div>
+          <div class="volume-picker" id="volumePicker" role="radiogroup" aria-label="Volume from 1 to 100"></div>
+          <small>Choose one of the 100 available volume presets. Keyboard entry is not supported because every valid choice is already present.</small>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <div class="section-title"><span>02</span><div><h3>Notifications</h3><p>Digest schedule</p></div></div>
+        <div class="field-grid two">
+          <label class="field">
+            <span>Daily digest minute</span>
+            <select id="digestMinute" class="dense-select" aria-label="Daily digest time"></select>
+            <small>All 1,440 minutes in a day are listed individually.</small>
+          </label>
+          <div class="field">
+            <span>Delivery certainty</span>
+            <div class="range-row"><input id="deliveryCertainty" type="range" min="0" max="10000" value="9950" /><output id="deliveryCertaintyOut">99.50%</output></div>
+            <small>Precision is available to two decimal places for operational confidence.</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <div class="section-title"><span>03</span><div><h3>Appearance</h3><p>Interface color</p></div></div>
+        <div class="field">
+          <div class="label-row"><span>Accent color</span><code id="accentHex">#74A7FF</code></div>
+          <div class="color-index-control">
+            <div class="color-swatch" id="accentSwatch" aria-hidden="true"></div>
+            <input id="accentIndex" type="range" min="0" max="16777215" value="7645183" step="1" aria-label="Accent color index" />
+          </div>
+          <div class="slider-meta"><span>#000000</span><span id="accentPosition">Color 7,645,184 of 16,777,216</span><span>#FFFFFF</span></div>
+          <small>Every 24-bit RGB color is available in one continuous numeric range.</small>
+        </div>
+      </section>
+
+      <div class="form-footer">
+        <div class="save-status"><i></i><span>Settings apply immediately on this device</span></div>
+        <button id="resetSettings" class="button secondary" type="button">Restore midpoint values</button>
+      </div>
+    </section>
+
+    <section class="panel app-view" data-view="challenge" aria-labelledby="challengeTitle" hidden>
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">Compliance exercise</span>
+          <h2 id="challengeTitle">Create an acceptable account phrase</h2>
+          <p>Requirements appear as your phrase becomes more compliant.</p>
+        </div>
+        <div class="challenge-score"><strong id="challengeScore">0</strong><span>rules passed</span></div>
+      </div>
+
+      <section class="form-section challenge-workspace">
+        <label class="field challenge-input-field">
+          <span>Account phrase</span>
+          <textarea id="challengeInput" rows="4" placeholder="Enter a phrase"></textarea>
+          <small>This is a local challenge string, not your account password.</small>
+        </label>
+        <div class="rule-stack" id="ruleStack" aria-live="polite"></div>
+        <div class="challenge-complete" id="challengeComplete" hidden>
+          <strong>Phrase accepted.</strong>
+          <span>Every requirement is currently satisfied. Editing the phrase can invalidate earlier requirements.</span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="policyModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="policyTitle">
+    <div class="modal-card">
+      <div class="modal-head"><div><span class="eyebrow">Password standard NS-14.2</span><h3 id="policyTitle">Password requirements</h3></div><button id="closePolicy" type="button" aria-label="Close">×</button></div>
+      <ol class="requirements">
+        <li>Passwords are composed of three approved dictionary words.</li>
+        <li>Each word is selected by its numeric index from the approved list.</li>
+        <li>A two-digit number is required.</li>
+        <li>Exactly one approved symbol is required.</li>
+        <li>Direct keyboard entry is disabled to prevent typographical errors.</li>
+        <li>Word order matters.</li>
+        <li>Repeated words are permitted, but discouraged by a tooltip we did not build.</li>
+        <li>Numbers from 00 through 99 are supported.</li>
+        <li>Symbols are selected from a twelve-character compliance set.</li>
+        <li>Copying is permitted after generation.</li>
+        <li>Pasting back into this form is unnecessary because the form already knows it.</li>
+        <li>Changing any slider immediately changes the password.</li>
+        <li>The resulting password is valid even if you dislike it.</li>
+        <li>This policy is intentionally optimized for machines, not people.</li>
+      </ol>
+      <button class="button primary full" id="ackPolicy" type="button">I understand perfectly</button>
+    </div>
+  </div>
+
+  <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="false"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
